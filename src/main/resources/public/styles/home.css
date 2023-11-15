@@ -1,0 +1,108 @@
+/* HOME */
+
+:root{
+    --color-white: #fff;
+    --color-fondo:  #323641;
+    --color-black: #000;
+    --color-violet1: #7A28EB;
+    --color-violet2: #5806B9;
+    --color-white2: #ECE4E0;
+    --color-white3: #A9A0b0;
+    --color-iconos: #9B74C6;
+    --color-barras :#EBE3F4;
+    --color-cards: #F5F1F9;
+    --color-boton-desactivado: #F394B6;
+    --color-boton-activado: #EB4D86;
+    --color-boton-activado-hover: #b13864;
+    --color-filtro_activado: #af90d1;
+    --transition: all 0.3s ease;
+}
+
+.filter{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.cards{
+    min-width: 100%;
+    overflow-y: auto;
+    color: var(--color-violet1);
+}
+
+.card{
+    margin-top: 2rem;
+    height: 15rem;
+    min-width: 100%;
+    border-radius: 20px;
+    border-bottom: 1px solid var(--color-iconos);
+    background: var(--color-cards);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.boton{
+    text-align: center;
+    justify-content: center;
+}
+
+.boton_enviar{
+    color: white;
+    font-size: 13px;
+    background-color: var(--color-boton-activado);
+    border-radius: 10px;
+    /*border-color: ;*/
+    padding: 10px;
+    width: 130px;
+}
+
+.boton_enviar:hover{
+    background-color: var(--color-boton-activado-hover);
+    border-color: var(--color-boton-activado-hover);
+}
+
+.incidentes{
+    overflow-y: auto;
+    margin-left: 3%;
+    margin-right: 2%;
+    max-height: 6rem;
+    margin-top:1rem;
+}
+
+.incidente{
+    margin-top: 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--color-iconos);
+    background: var(--color-cards);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.titulo_comunidad{
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+x
+.filtro_desactivado {
+    margin-left: 1rem ;
+    color:white;
+    border-radius: 8px;
+    border: 1px solid #D7C7E8;
+    background:  #C2C3C6;
+}
+
+.filtro{
+    margin-left: 1rem;
+    color:white;
+    border-radius: 8px;
+    border: 1px solid #af90d1;
+    background: #af90d1;
+}

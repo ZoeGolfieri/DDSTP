@@ -1,0 +1,48 @@
+{{#partial "principal" }}
+    <div class="contenedor">
+
+        <div class="filter">
+            <h3>Filtros:</h3>
+            <a href="/comunidades?estadoIncidentes=RESUELTO" class="filtro">Cerrado</a>
+            <a href="/comunidades?estadoIncidentes=ACTIVO" class="filtro">Abierto</a>
+            <a href="/comunidades" class="filtro">Todos</a>
+        </div>
+
+    {{#if ErrorIncidente}}
+        <div class="mensajeError"> No se puede cerrar el incidente  </div>
+    {{/if}}
+
+        <div class="cards">
+            <ul>
+                {{#each incidentes}}
+                    <div class='card'>
+                        <li>
+                            <div class="titulo_comunidad">
+                                <h1>{{this.[0].[comunidad].[nombre]}}</h1>
+                            </div>
+                            <div class = "incidentes">
+                                <ul>
+                                    {{#each this}}
+                                        <li>
+                                            <div class = "incidente">
+                                                <h2>{{observaciones}}</h2>
+                                                <form method="POST" action="/incidentes/{{id_incidente}}/cerrar">
+                                                    <button type="submit" class="boton_enviar">
+                                                        Cerrar
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    {{/each}}
+                                </ul>
+                            </div>
+                        </li>
+                    </div>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+{{/partial}}
+
+{{> layoutConBarra.html.hbs }}

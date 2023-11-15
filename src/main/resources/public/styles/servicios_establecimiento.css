@@ -1,0 +1,71 @@
+.cards_servicio{
+    min-width: 100%;
+    overflow-y: auto;
+    color: var(--color-violet1);
+    padding-right: 2rem;
+}
+
+.card_servicio{
+    margin-top: 2rem;
+    min-width: 100%;
+    border-radius: 20px;
+    border-bottom: 1px solid var(--color-iconos);
+    background: var(--color-cards);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.servicios{
+    margin-left: 3%;
+    margin-right: 2%;
+    margin-top:1rem;
+    padding: 0 10px 10px;
+}
+
+.titulo_servicio{
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color:white
+}
+.servicio{
+    margin-top: 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--color-iconos);
+    background: var(--color-cards);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.comunidad_select{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    outline: 0;
+    border: 1px solid crimson;
+    padding: 4px;
+    border-radius: 9px;
+}
+
+.servicios::-webkit-scrollbar {
+    width: 12px;
+}
+
+.servicios::-webkit-scrollbar-thumb {
+    background-color:	var(--color-boton-activado);
+    border-radius: 20px;
+    border: 3px solid var(--color-boton-activado-hover);
+}
+
+.incidentes::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+}
+
+.incidentes::-webkit-scrollbar-thumb {
+    background-color:	var(--color-boton-activado);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid var(--color-boton-activado-hover);  /* creates padding around scroll thumb */
+}

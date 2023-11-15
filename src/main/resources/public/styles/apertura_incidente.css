@@ -1,0 +1,46 @@
+.titulo_apertura {
+    color: var(--color-cards);
+    margin: 2rem
+}
+
+.subtitulo_apertura {
+    color: var(--color-violet1);
+}
+
+.new_incidente_form{
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 25px 35px 35px 30px;
+    height: 100%;
+    margin-block-end: 0;
+}
+
+.form_apertura_incidente{
+    background-color: #EBE3F4;
+    border-radius: 20px;
+    height: 30rem;
+    width: 40rem;
+    text-align: center;
+}
+
+.comentario {
+    flex-direction: column;
+    display:flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    color: #9B74C6;
+    height: 80%;
+    width: 100%;
+}
+
+.observaciones{
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 8px;
+}

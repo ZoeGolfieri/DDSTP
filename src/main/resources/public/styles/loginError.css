@@ -1,0 +1,39 @@
+
+.inputFormError{
+    height: 30px;
+    width: 250px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid red;
+    padding: 8px;
+}
+
+.inputFormError:hover{
+    border-color: red;
+}
+
+.inputFormError:focus-visible{
+    border-color: red;
+}
+.inputFormError:active{
+    border-color: red;
+}
+
+.mensajeError{
+    color: red;
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+}
+
+.ErrorContainer{
+    display: flex;
+    align-items: center;
+}
+
+.iconError{
+    margin-left: 5px;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,312 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Usuario --> ValidadorContrasenias
+Usuario --> RangoHoraio
+Usuario --> MedioComunicacion
+Usuario --> Localizacion
+Usuario --> Servicio
+Usuario --> Comunidad
+ValidadorContrasenias --> ValidadorPeorContrasenia
+
+
+class Usuario {
+    - Integer id_usuario
+    + String apellido
+    String nombre
+    String email
+    String telefono
+    LocalDateTime ultimaHoraNotificacion
+    String nombreUsuario
+    String contrasenia
+    List<RangoHorario> horariosNotificacion
+    MedioComunicacion medioComunicacion
+    Localizacion localizacion
+    List<Establecimiento> establecimientosInteres
+    List<Servicio> serviciosInteres
+    ValidadorContrasenias validador
+
+    Usuario(String nombreUsuario, String contrasenia)
+    boolean estaEnRangoHorario()
+    void notificarIncidente(Incidente incidente)
+    void notificarIncidentes()
+    void agregarHorarioNotificacion(RangoHorario nuevoRango)
+    void notificarServiciosCercanos(List<Servicio> servicios)
+}
+
+Empresa -> TipoEmpresa
+Empresa --> Servicio
+
+class Empresa {
+    Integer id_empresa
+    String nombreEmpresa
+    TipoEmpresa tipo
+    List<String> problematicas
+    List<Servicio> serviciosAsociados
+
+    Empresa(String nombreEmpresa, TipoEmpresa tipo)
+}
+class RangoHoraio{
+    int horaInicio
+    int horaFin
+
+    RangoHorario(int inicio, int fin)
+    boolean laHoraPertene(int hora)
+}
+enum TipoEmpresa {
+    ENTIDAD
+    ORGANISMODECONTROL
+}
+
+class ValidadorContrasenias {
+    ValidadorPeorContrasenia validador
+
+    validarContrasenia(String nombreUsuario, String contrasenia)
+    validacionCaracteresRepetidos(String contrasenia)
+    validarConPeoresContrasenias(String contrasenia)
+    cambiarArchivoPeoresContrasenias(String nuevoArchivo)
+    validarTamanio(String contrasenia)
+    validarCredenciales(String nombreUsuario, String contrasenia)
+}
+
+class ValidadorPeorContrasenia {
+    String nombreArchivo
+    ValidadorPeorContrasenia INSTANCE
+
+    validarPosiblePeorContrasenia(String contrasenia)
+}
+
+
+
+
+MedioComunicacion <|-- MedioEmail
+MedioComunicacion <|-- WhatsApp
+
+abstract class MedioComunicacion{
+    Localizacion notificarIncidente(Usuario usuario, Incidente incidente)
+    void notificarServicioCercano(Usuario usuario, List<Servicio> servicios)
+}
+
+class MedioEmail
+class WhatsApp
+
+
+Localizacion --> ServicioLocalizacion
+ServicioLocalizacion <|.. ServicioLocalizacionGeoRefApi
+ServicioLocalizacionGeoRefApi --> GeoRefApi
+
+interface ServicioLocalizacion {
+    Localizacion buscarMunicipio(String nombreProvincia, String nombreMunicipio);
+    Localizacion buscarDepartamento(String nombreProvincia, String nombreDepartamento);
+    Localizacion buscarProvincia(String nombreProvincia);
+    Localizacion obtenerUbicacionActual();
+    Localizacion obtenerUbicacion(String longitud, String latitud);
+}
+class ServicioLocalizacionGeoRefApi {
+    String apiURL
+    Retrofit retrofit
+
+    ServicioLocalizacionGeoRefApi()
+}
+interface GeoRefApi
+
+Servicio --> TipoServicio
+Servicio --> Incidente
+Incidente --> EstadoIncidente
+
+class Servicio{
+    Integer id_servicio
+    TipoServicio tipo
+    List<Incidente> incidentes
+    List<Usuario> usuariosInteresados
+
+    Servicio(TipoServicio tipo)
+    void aniadirIncidente(Incidente incidente)
+    void informarNoFuncionamiento(String observaciones)
+    List<Comunidad> ComunidadesInteresadasEnElServicio()
+    List<Incidente> incidentesDeComunidad(Comunidad comunidad)
+}
+
+class Incidente{
+    String observaciones
+    EstadoIncidente estado
+    LocalDateTime horarioApertura
+    LocalDateTime horarioCierre
+
+    Incidente(String observaciones, Comunidad comunidad)
+    void cerrarIncidente()
+    long tiempoCierre()
+    boolean esDeLaComunidad(Comunidad comunidad)
+    boolean suEstadoEs(EstadoIncidente estado)
+}
+
+enum TipoServicio{
+    BAÑO
+    ELEVACION
+}
+
+enum EstadoIncidente {
+    ACTIVO
+    RESUELTO
+}
+
+
+RepositorioDeUsuarios --> Usuario
+RepositorioEmpresas -> Empresa
+RepositorioComunidad --> Comunidad
+
+
+class RepositorioComunidad {
+    List<Comunidad> comunidades
+    RepositorioComunidad repositorioComunidad
+
+    RepositorioComunidad getInstancia()
+    void aniadirComunidad(Comunidad comunidad)
+    List<Comunidad> comunidadesALasQuePertenece(Usuario usuario)
+}
+
+class RepositorioDeEntidades{
+    List<Entidad> entidades
+    RepositorioDeEntidades repositorioDeEntidades
+    List<Criterio> criterios
+
+    void RepositorioDeEntidades getInstancia()
+    void aniadirEntidad(Entidad entidad)
+    void aniadirCriterio(Criterio criterio)
+    void generarRankings()
+    void eliminarRankingsAntiguos()
+}
+
+class RepositorioDeUsuarios{
+    List<Usuario> usuariosDeLaPlataforma
+    RepositorioDeUsuarios INSTANCE
+
+    aniadirUsuario(Usuario usuario)
+}
+
+class RepositorioEmpresas{
+    List<Empresa> empresasUsuarias
+
+    List<Empresa> getEmpresasUsuarias()
+    String abrirArchivo(String nombreArchivo)
+    void registrarEmpresas(String nombreArchivo)
+    void registrarEmpresa(String nombreEmpresa, TipoEmpresa tipo)
+}
+
+
+Criterio <|.. RankingPorCantidad
+Criterio <|.. RankingPorPromedioCierre
+
+interface Criterio{
+    void calcularRanking(List<Entidad> entidades)
+    default void generarCSVConNumeracion(List<String> listaStrings, String nombreArchivo)
+}
+class RankingPorCantidad
+class RankingPorPromedioCierre
+
+Localizacion -> Division
+Division -> TipoDivision
+
+class Localizacion {
+    String provincia
+    Division division
+    Double latitud
+    Double longitud
+
+    Localizacion(String provincia, Division division)
+    boolean estaCerca(Localizacion localizacion)
+}
+class Division {
+    String nombre
+    TipoDivision tipo
+}
+enum TipoDivision {
+  MUNICIPIO
+  DEPARTAMENTO
+}
+
+
+Establecimiento -> TipoEstablecimiento
+
+class Establecimiento{
+    String nombre
+    TipoEstablecimiento tipoEstablecimiento
+    Localizacion localizacion
+    List<Servicio> servicios
+    List<Usuario> usuariosInteresados
+
+    void darAltaServicio(Servicio servicioNuevo)
+    void estaCerca(Usuario usuario)
+    void darBajaServicio(Servicio servicioObsoleto)
+}
+enum TipoEstablecimiento {
+  ESTACION
+  SUCURSAL
+}
+
+Transporte -> TipoTransporte
+Entidad <|-- Transporte
+Entidad --> Localizacion
+Entidad --> Establecimiento
+RepositorioDeEntidades --> Entidad
+RepositorioDeEntidades --> Criterio
+
+
+
+Establecimiento --> Servicio
+Establecimiento --> Usuario
+Establecimiento --> Localizacion
+
+class Entidad {
+    String nombreEntidad
+    List<Establecimiento> conjuntoDeEstablecimientos
+    Localizacion localizacion
+
+    void setearNombre(String nombreEntidad)
+    List<Servicio> todosLosServicios()
+    int cantidadServiciosEntidad()
+    List<Establecimiento> getEstablecimientos()
+    List<Incidente> incidentesDeEntidad()
+    int cantidadIncidentesEntidad()
+    List<Incidente> incidentesSemanales()
+    int cantidadIncidentesEnUnaSemana()
+    double promedioDeCierreIncidente()
+    void aniadirEstablecimiento(Establecimiento establecimiento)
+}
+class Transporte{
+  Establecimiento estacionOrigen;
+  Establecimiento estacionDestino;
+  TipoTransporte tipo;
+
+}
+enum TipoTransporte{
+  SUBTERRANEO
+  FERROCARRIL
+}
+
+
+Comunidad --> Usuario
+Comunidad --> Servicio
+
+
+class Comunidad {
+    List<Usuario> miembros
+    List<Usuario> administradores
+    List<Servicio> serviciosDeInteres
+
+    void reportarIncidente(Incidente incidente)
+    boolean estaInteresaEnServicio(Servicio servicio)
+    void darDeBajaMiembro(Usuario miembro)
+    void darDeAltaMiembro(Usuario miembroNuevo)
+    List<Incidente> consultarIncidentesPorEstado(EstadoIncidente estadoIncidente)
+    void solicitarServicio(Servicio servicio, Establecimiento establecimiento)
+    boolean usuarioEsParte(Usuario usuario)
+    List<Incidente> incidentesReportados()
+}
+
+class mainNotificarIncidentes {
+    void notificarIncidentes()
+}
+
+mainNotificarIncidentes --> RepositorioDeUsuarios
+@enduml
