@@ -271,6 +271,12 @@
           </archive>
         </configuration>
       </plugin>
+      <plugin>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-webapp-maven-plugin</artifactId>
+    <version>1.11.0</version> <!-- Actualiza a la última versión disponible -->
+    <!-- ... otras configuraciones ... -->
+</plugin>
     </plugins>
   </build>
 </project>
