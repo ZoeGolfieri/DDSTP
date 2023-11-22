@@ -271,12 +271,17 @@
           </archive>
         </configuration>
       </plugin>
-      <plugin>
-    <groupId>com.microsoft.azure</groupId>
+     <plugin>
+            <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-webapp-maven-plugin</artifactId>
-    <version>1.11.0</version> <!-- Actualiza a la última versión disponible -->
-    <!-- ... otras configuraciones ... -->
-</plugin>
+    <version>1.11.0</version>
+            <configuration>
+                <!-- Otras configuraciones del complemento -->
+
+                <!-- Agregar el argumento JVM -->
+                <argLine>--add-opens=java.base/java.util=ALL-UNNAMED</argLine>
+            </configuration>
+        </plugin>
     </plugins>
   </build>
 </project>
