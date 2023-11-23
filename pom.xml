@@ -237,8 +237,8 @@
         <artifactId>azure-webapp-maven-plugin</artifactId>
         <version>1.15.0</version>
         <configuration>
-          <resourceGroup>TpDdsConectadosGrupo</resourceGroup>
-          <appName>TpDdsConectados</appName>
+          <resourceGroup>TpDDSFinal</resourceGroup>
+          <appName>TpDDSFinal</appName>
           <region>East US</region>
           <!-- Otras configuraciones ... -->
         </configuration>
