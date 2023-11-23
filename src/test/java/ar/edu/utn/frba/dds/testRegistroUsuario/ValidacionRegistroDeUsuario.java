@@ -3,6 +3,7 @@ package ar.edu.utn.frba.dds.testRegistroUsuario;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ar.edu.utn.frba.dds.domain.repositorios.RepositorioDeUsuarios;
+import ar.edu.utn.frba.dds.domain.validadores.ValidadorContrasenias;
 import ar.edu.utn.frba.dds.domain.validadores.ValidadorPeorContrasenia;
 import ar.edu.utn.frba.dds.domain.usuario.Usuario;
 import org.junit.jupiter.api.*;
@@ -13,7 +14,7 @@ public class ValidacionRegistroDeUsuario {
 
   @BeforeEach
   public void comienzo(){
-    ValidadorPeorContrasenia.getINSTANCE().setNombreArchivo("contraseniasPeligrosas.txt");
+    ValidadorPeorContrasenia.getInstance().setNombreArchivo("contraseniasPeligrosas.txt");
   }
   @Test
   public void unUsuarioSeRegistraSiSeValidaCorrectamenteLaContrasenia() {
