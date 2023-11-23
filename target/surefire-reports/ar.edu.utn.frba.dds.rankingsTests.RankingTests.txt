@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ar.edu.utn.frba.dds.rankingsTests.RankingTests
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.51 s - in ar.edu.utn.frba.dds.rankingsTests.RankingTests
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.773 s - in ar.edu.utn.frba.dds.rankingsTests.RankingTests
