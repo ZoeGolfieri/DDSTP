@@ -36,9 +36,9 @@ public class Incidentes {
 
   @BeforeEach
   public void setUp() {
-    usuario1 = new Usuario("usuario1", "elmascapodelmundo");
-    usuario2 = new Usuario("usuario2", "elmascapodelmundo");
-    usuario3 = new Usuario("usuario3", "elmascapodelmundo");
+    usuario1 = new Usuario("usuario1", "elmascapodelmundo", "contraseniasPeligrosas.txt");
+    usuario2 = new Usuario("usuario2", "elmascapodelmundo", "contraseniasPeligrosas.txt");
+    usuario3 = new Usuario("usuario3", "elmascapodelmundo", "contraseniasPeligrosas.txt");
     miembros1 = new ArrayList<>(Arrays.asList(usuario1, usuario2));
     miembros2 = new ArrayList<>(Arrays.asList(usuario3));
     administradores1 = new ArrayList<>(Arrays.asList(usuario1));

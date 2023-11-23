@@ -90,7 +90,7 @@ public class SessionController {
         modeloErrorRegistro.replace("errorContrasenia", false, true);
 
       try{
-        Usuario usuarioNuevo = new Usuario(request.queryParams("nombreUsuario"), request.queryParams("contrasenia"));
+        Usuario usuarioNuevo = new Usuario(request.queryParams("nombreUsuario"), request.queryParams("contrasenia"), "contraseniasPeligrosas.txt");
         RepositorioDeUsuarios.getINSTANCE().aniadirUsuario(usuarioNuevo);
         response.redirect("/login");
         return null;

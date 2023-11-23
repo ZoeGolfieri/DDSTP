@@ -17,33 +17,33 @@ public class ValidacionDeContraseniaTest {
   @Test
   public void unaContraseniaConCaracteresIgualesNoSirve()  {
     assertThrows(CaracteresRepetidosException.class, () -> {
-      validador.validarContrasenia("batman", "muchosaaa");
+      validador.validarContrasenia("batman", "muchosaaa","contraseniasPeligrosas.txt");
     });
   }
 
   @Test
   public void contraseniaInvalidaPorLongitudMenorAOcho() {
     assertThrows(ContraseniaMuyCortaException.class, () -> {
-      validador.validarContrasenia("batman", "abc");
+      validador.validarContrasenia("batman", "abc", "contraseniasPeligrosas.txt");
     });
   }
 
   @Test
   public void contraseniaInvalidaPorUsoDeCredenciales() {
     assertThrows(UsaCrendencialesException.class, () -> {
-      validador.validarContrasenia("soybatman", "soybatman");
+      validador.validarContrasenia("soybatman", "soybatman", "contraseniasPeligrosas.txt");
     });
   }
   @Test
   public void contraseniaEsPeorContrasenia() {
     assertThrows(MalaContraseniaException.class, () -> {
-      validador.validarContrasenia("soybatman", "pruebademalacontrasenia");
+      validador.validarContrasenia("soybatman", "pruebademalacontrasenia", "contraseniasPeligrosas.txt");
     });
   }
 
   @Test
   public void contraseniaValida() {
-    validador.validarContrasenia("soybatman", "elmascapodelmundo");
+    validador.validarContrasenia("soybatman", "elmascapodelmundo", "contraseniasPeligrosas.txt");
 
   }
 }

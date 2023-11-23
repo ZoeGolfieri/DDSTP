@@ -25,7 +25,7 @@ public class testServicioLocalizacionGeoRefApi {
     ServicioLocalizacion servicioMock = Mockito.mock(ServicioLocalizacion.class);
 
     Division departamento = new Division("Lacar", TipoDivision.DEPARTAMENTO);
-    Usuario usuario = new Usuario("Hola", "diseño de sistemas");
+    Usuario usuario = new Usuario("Hola", "diseño de sistemas", "contraseniasPeligrosas.txt");
     Localizacion localizacion = new Localizacion("Buenos Aires", null);
 
     Mockito

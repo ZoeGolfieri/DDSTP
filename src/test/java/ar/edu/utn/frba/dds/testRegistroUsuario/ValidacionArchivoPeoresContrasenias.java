@@ -11,8 +11,8 @@ public class ValidacionArchivoPeoresContrasenias {
   public void unaRutaIncorrectaGeneraExcepcion() {
     assertThrows(RutaInvalidaException.class, () -> {
       ValidadorPeorContrasenia validador = new ValidadorPeorContrasenia();
-      validador.setNombreArchivo("archivomalo.txt");
-      validador.validarPosiblePeorContrasenia("perotambienmegustasuperman");
+      String ruta = validador.obtenerRutaArchivo("archivomalo.txt");
+      validador.validarPosiblePeorContrasenia("perotambienmegustasuperman", ruta);
     });}
 
 

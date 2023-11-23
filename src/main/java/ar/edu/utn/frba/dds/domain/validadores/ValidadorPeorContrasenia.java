@@ -13,18 +13,17 @@ import java.nio.charset.StandardCharsets;
 
 public class ValidadorPeorContrasenia {
   @Getter
-  @Setter
-  private String nombreArchivo = "contraseniasPeligrosas.txt";
-@Getter
+  String nombreArchivoActual;
+
   private static ValidadorPeorContrasenia INSTANCE = new ValidadorPeorContrasenia();
 
   public static ValidadorPeorContrasenia getInstance() {
     return INSTANCE;
   }
 
-  public void validarPosiblePeorContrasenia(String contrasenia) {
+  public void validarPosiblePeorContrasenia(String contrasenia, String nombreArchivo) {
     try (BufferedReader br = new BufferedReader(
-        new InputStreamReader(new FileInputStream(obtenerRutaArchivo()), StandardCharsets.UTF_8))) {
+        new InputStreamReader(new FileInputStream(obtenerRutaArchivo(nombreArchivo)), StandardCharsets.UTF_8))) {
 
       String linea;
       while ((linea = br.readLine()) != null) {
@@ -39,8 +38,9 @@ public class ValidadorPeorContrasenia {
     }
   }
 
-  private String obtenerRutaArchivo() {
+  public String obtenerRutaArchivo(String nombreArchivo) {
     Path path = Paths.get("src", "main", "resources", nombreArchivo);
+    nombreArchivoActual = path.toAbsolutePath().toString();
     return path.toAbsolutePath().toString();
   }
 }

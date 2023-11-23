@@ -50,8 +50,8 @@ public class ValidacionEstablecimiento {
         localizacion2);
     servicioDeLa1 = new Servicio(TipoServicio.BAÑO);
     servicioDeLa2 = new Servicio(TipoServicio.BAÑO);
-    luki = new Usuario("usuario1", "elmascapodelmundo");
-    lucho = new Usuario("usuario2", "elmascapodelmundo");
+    luki = new Usuario("usuario1", "elmascapodelmundo", "contraseniasPeligrosas.txt");
+    lucho = new Usuario("usuario2", "elmascapodelmundo", "contraseniasPeligrosas.txt");
     List<Usuario> miembros = new ArrayList<>(Arrays.asList(luki, lucho));
     List<Usuario> administradores = new ArrayList<>(Arrays.asList(luki));
     List<Servicio> servicios = new ArrayList<>(Arrays.asList(servicioDeLa1, servicioDeLa2));

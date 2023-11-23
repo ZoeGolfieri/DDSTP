@@ -14,11 +14,11 @@ public class ValidacionRegistroDeUsuario {
 
   @BeforeEach
   public void comienzo(){
-    ValidadorPeorContrasenia.getInstance().setNombreArchivo("contraseniasPeligrosas.txt");
+    ValidadorPeorContrasenia.getInstance().obtenerRutaArchivo("contraseniasPeligrosas.txt");
   }
   @Test
   public void unUsuarioSeRegistraSiSeValidaCorrectamenteLaContrasenia() {
-    Usuario usuario = new Usuario("soybatman", "elmascapodelmundo");
+    Usuario usuario = new Usuario("soybatman", "elmascapodelmundo", "contraseniasPeligrosas.txt");
     repousers.aniadirUsuario(usuario);
     Assertions.assertTrue(repousers.getUsuariosDeLaPlataforma().stream().anyMatch(  u -> u.getNombreUsuario().equals("soybatman") ));
 }

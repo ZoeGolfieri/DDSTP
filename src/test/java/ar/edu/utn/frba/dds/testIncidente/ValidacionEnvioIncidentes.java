@@ -20,8 +20,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ValidacionEnvioIncidentes {
-  Usuario usuario = new Usuario("usuario1", "elmascapodelmundo");
-  Usuario usuario2 = new Usuario("usuario2", "elmascapodelmundo");
+  Usuario usuario = new Usuario("usuario1", "elmascapodelmundo", "contraseniasPeligrosas.txt");
+  Usuario usuario2 = new Usuario("usuario2", "elmascapodelmundo", "contraseniasPeligrosas.txt" );
   List<Usuario> miembros = new ArrayList<>(Arrays.asList(usuario, usuario2));
   List<Usuario> administradores = new ArrayList<>(Arrays.asList(usuario));
   Servicio servicio = new Servicio(TipoServicio.BAÑO);

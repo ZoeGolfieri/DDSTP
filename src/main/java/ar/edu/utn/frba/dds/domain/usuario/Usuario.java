@@ -103,8 +103,8 @@ public class Usuario{
   private ValidadorContrasenias validador = new ValidadorContrasenias();
 
   // Metodos
-  public Usuario(String nombreUsuario, String contrasenia) {
-    validador.validarContrasenia(nombreUsuario,contrasenia);
+  public Usuario(String nombreUsuario, String contrasenia, String nombreArchivo) {
+    validador.validarContrasenia(nombreUsuario,contrasenia, nombreArchivo);
     this.nombreUsuario = nombreUsuario;
     this.setContrasenia(contrasenia);
   }

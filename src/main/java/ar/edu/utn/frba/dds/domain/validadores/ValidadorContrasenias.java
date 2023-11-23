@@ -10,12 +10,12 @@ public class ValidadorContrasenias {
 
   public ValidadorPeorContrasenia validador = new ValidadorPeorContrasenia();
 
-  public void validarContrasenia(String nombreUsuario, String contrasenia) {
+  public void validarContrasenia(String nombreUsuario, String contrasenia, String nombreArchivo) {
 
     this.validarTamanio(contrasenia);
     this.validacionCaracteresRepetidos(contrasenia);
     this.validarCredenciales(nombreUsuario, contrasenia);
-    this.validarConPeoresContrasenias(contrasenia);
+    this.validarConPeoresContrasenias(contrasenia, nombreArchivo);
   }
 
   private void validacionCaracteresRepetidos(String contrasenia) {
@@ -29,12 +29,12 @@ public class ValidadorContrasenias {
     }
   }
 
-  public void validarConPeoresContrasenias(String contrasenia) {
-    validador.validarPosiblePeorContrasenia(contrasenia);
+  public void validarConPeoresContrasenias(String contrasenia, String nombreArchivo) {
+    validador.validarPosiblePeorContrasenia(contrasenia, nombreArchivo);
   }
 
   public void cambiarArchivoPeoresContrasenias(String nuevoArchivo) {
-    validador.setNombreArchivo(nuevoArchivo);
+    validador.obtenerRutaArchivo(nuevoArchivo);
    }
 
   private void validarTamanio(String contrasenia) {

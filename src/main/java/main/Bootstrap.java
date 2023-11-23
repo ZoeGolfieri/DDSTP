@@ -47,11 +47,11 @@ public class Bootstrap implements WithSimplePersistenceUnit {
       Localizacion localizacion2 = new Localizacion("Buenos Aires", division, 10.00, 11.00);
 
       /*------------DECLARO USUARIOS---------------------------*/
-      Usuario usuarioAdmin = new Usuario("usuario1","elmascapodelmundo");
-      Usuario usuarioPrueba2 = new Usuario("usuario2","elmascapodelmundo");
-      Usuario usuarioPrueba3 = new Usuario("usuario3","elmascapodelmundo");
+      Usuario usuarioAdmin = new Usuario("usuario1","elmascapodelmundo", "contraseniasPeligrosas.txt");
+      Usuario usuarioPrueba2 = new Usuario("usuario2","elmascapodelmundo","contraseniasPeligrosas.txt");
+      Usuario usuarioPrueba3 = new Usuario("usuario3","elmascapodelmundo", "contraseniasPeligrosas.txt");
 
-      Usuario luki = new Usuario("usuarioX", "elmascapodelmundo");
+      Usuario luki = new Usuario("usuarioX", "elmascapodelmundo", "contraseniasPeligrosas.txt");
 
 
 //      List<RangoHorario> horariosNotificacion = new ArrayList<>(Arrays.asList(horario));
@@ -59,7 +59,7 @@ public class Bootstrap implements WithSimplePersistenceUnit {
       usuarioAdmin.setLocalizacion(localizacion);
       usuarioAdmin.setEmail("luki@gmail.com");
 
-      Usuario lucho = new Usuario("usuarioY", "elmascapodelmundo");
+      Usuario lucho = new Usuario("usuarioY", "elmascapodelmundo", "contraseniasPeligrosas.txt");
       lucho.setLocalizacion_actual(localizacion2);
       lucho.setLocalizacion(localizacion);
 
