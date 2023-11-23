@@ -4,7 +4,7 @@
 name: Build and deploy JAR app to Azure Web App - TpDDsReFinalConectados
 
 env:
-  AZURE_WEBAPP_NAME: TpDDSFinal # set this to your application's name
+  AZURE_WEBAPP_NAME: TpDDsReFinalConectados # set this to your application's name
   
 on:
   push:
@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
           path: '${{ github.workspace }}/target/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
 
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
