@@ -3,6 +3,9 @@
 
 name: Build and deploy JAR app to Azure Web App - TpDDsReFinalConectados
 
+env:
+  AZURE_WEBAPP_NAME: TpDDSFinal # set this to your application's name
+  
 on:
   push:
     branches:
@@ -28,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: '${{ github.workspace }}/target/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
 
   deploy:
     runs-on: windows-latest
@@ -49,5 +52,5 @@ jobs:
         with:
           app-name: 'TpDDsReFinalConectados'
           slot-name: 'Production'
-          package: '*.jar'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BF8E4E4426FF49A68313FF0173DB87CC }}
+          package: 'ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
+          publish-profile:  ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE2 }}
