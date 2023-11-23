@@ -15,7 +15,7 @@ public class ValidadorPeorContrasenia {
   @Getter
   String nombreArchivoActual;
 
-  private static ValidadorPeorContrasenia INSTANCE = new ValidadorPeorContrasenia();
+  private static final ValidadorPeorContrasenia INSTANCE = new ValidadorPeorContrasenia();
 
   public static ValidadorPeorContrasenia getInstance() {
     return INSTANCE;
@@ -41,6 +41,6 @@ public class ValidadorPeorContrasenia {
   public String obtenerRutaArchivo(String nombreArchivo) {
     Path path = Paths.get("src", "main", "resources", nombreArchivo);
     nombreArchivoActual = path.toAbsolutePath().toString();
-    return path.toAbsolutePath().toString();
+    return nombreArchivoActual;
   }
 }
