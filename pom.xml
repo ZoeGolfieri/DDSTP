@@ -24,7 +24,10 @@
       <name>Twilio Maven Repository</name>
       <url>https://repository.twilio.com/maven/public</url>
     </repository>
-    <!-- Otros repositorios... -->
+    <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -187,7 +190,12 @@
       <artifactId>jackson-core</artifactId>
       <version>2.12.5</version> <!-- Utiliza la última versión disponible -->
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-site-plugin</artifactId>
+      <version>4.0.0-M11</version>
+      <type>maven-plugin</type>
+    </dependency>
   </dependencies>
   <build>
 
@@ -206,7 +214,11 @@
           <skip>true</skip>
         </configuration>
       </plugin>
-
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.1.2</version> <!-- Puedes cambiar esto a la versión que prefieras -->
+      </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -265,7 +277,11 @@
         <artifactId>maven-install-plugin</artifactId>
         <version>3.0.0-M1</version>
       </plugin>
-
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.7.1</version>
+      </plugin>
       <plugin>
         <groupId>com.microsoft.azure</groupId>
         <artifactId>azure-webapp-maven-plugin</artifactId>
@@ -277,7 +293,6 @@
           <!-- Otras configuraciones ... -->
         </configuration>
       </plugin>
-
     </plugins>
   </build>
 </project>
