@@ -40,6 +40,7 @@ public class RepositorioComunidad implements WithSimplePersistenceUnit {
 //  }
 
   public void aniadirComunidad(Comunidad comunidad) {
+    persist(comunidad);
     comunidades.add(comunidad);
   }
 

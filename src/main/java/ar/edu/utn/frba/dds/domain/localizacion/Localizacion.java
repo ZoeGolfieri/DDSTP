@@ -39,7 +39,7 @@ public class Localizacion {
   public boolean estaCerca(Localizacion localizacion) {
     double distanciaLatitud = this.getLatitud()- localizacion.getLatitud();
     double distanciaLongitud = this.getLongitud() - localizacion.getLongitud();
-    return  100<Math.sqrt(distanciaLatitud * distanciaLatitud + distanciaLongitud * distanciaLongitud);
+    return  100>Math.sqrt(distanciaLatitud * distanciaLatitud + distanciaLongitud * distanciaLongitud);
   }
 
 }

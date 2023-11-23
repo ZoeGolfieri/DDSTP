@@ -24,6 +24,7 @@ public class RepositorioEstablecimientos implements WithSimplePersistenceUnit {
   }
 
   public void aniadirEstablecimiento(Establecimiento establecimiento){
+    persist(establecimiento);
     this.establecimientos.add(establecimiento);
   }
   public List<Establecimiento> obtenerTodos() {

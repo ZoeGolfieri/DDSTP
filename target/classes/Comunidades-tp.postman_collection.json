@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "b8650c70-fabf-4891-8280-ebb533d9ddd0",
+		"name": "Comunidades-tp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31044225"
+	},
+	"item": [
+		{
+			"name": "Listado comunidades",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:9001/comunidades"
+			},
+			"response": []
+		},
+		{
+			"name": "Detalle comunidades",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:9001/comunidades/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Creacion de comunidades",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:9001/comunidades"
+			},
+			"response": []
+		},
+		{
+			"name": "Edición de comunidades",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": "http://localhost:9001/comunidades/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminación de comunidades",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:9001/comunidades/1"
+			},
+			"response": []
+		}
+	]
+}

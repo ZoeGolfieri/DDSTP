@@ -8,6 +8,8 @@ import ar.edu.utn.frba.dds.domain.localizacion.Localizacion;
 import ar.edu.utn.frba.dds.domain.localizacion.Provincia;
 import ar.edu.utn.frba.dds.domain.localizacion.division.Division;
 import ar.edu.utn.frba.dds.domain.localizacion.division.TipoDivision;
+import ar.edu.utn.frba.dds.domain.medioComunicacion.MedioEmail;
+import ar.edu.utn.frba.dds.domain.medioComunicacion.WhatsApp;
 import ar.edu.utn.frba.dds.domain.repositorios.RepositorioComunidad;
 import ar.edu.utn.frba.dds.domain.repositorios.RepositorioDeEntidades;
 import ar.edu.utn.frba.dds.domain.repositorios.RepositorioDeUsuarios;
@@ -16,6 +18,7 @@ import ar.edu.utn.frba.dds.domain.servicio.EstadoIncidente;
 import ar.edu.utn.frba.dds.domain.servicio.Incidente;
 import ar.edu.utn.frba.dds.domain.servicio.Servicio;
 import ar.edu.utn.frba.dds.domain.servicio.TipoServicio;
+import ar.edu.utn.frba.dds.domain.usuario.RangoHorario;
 import ar.edu.utn.frba.dds.domain.usuario.Usuario;
 import com.google.common.util.concurrent.Service;
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
@@ -41,6 +44,7 @@ public class Bootstrap implements WithSimplePersistenceUnit {
       /*------------DECLARO LOCALIZACION-----------------------*/
       Division division = new Division("CABA", TipoDivision.MUNICIPIO);
       Localizacion localizacion = new Localizacion("Buenos Aires", division, 10.00, 11.00);
+      Localizacion localizacion2 = new Localizacion("Buenos Aires", division, 10.00, 11.00);
 
       /*------------DECLARO USUARIOS---------------------------*/
       Usuario usuarioAdmin = new Usuario("usuario1","elmascapodelmundo");
@@ -48,7 +52,16 @@ public class Bootstrap implements WithSimplePersistenceUnit {
       Usuario usuarioPrueba3 = new Usuario("usuario3","elmascapodelmundo");
 
       Usuario luki = new Usuario("usuarioX", "elmascapodelmundo");
+
+
+//      List<RangoHorario> horariosNotificacion = new ArrayList<>(Arrays.asList(horario));
+      usuarioAdmin.setLocalizacion_actual(localizacion2);
+      usuarioAdmin.setLocalizacion(localizacion);
+      usuarioAdmin.setEmail("luki@gmail.com");
+
       Usuario lucho = new Usuario("usuarioY", "elmascapodelmundo");
+      lucho.setLocalizacion_actual(localizacion2);
+      lucho.setLocalizacion(localizacion);
 
       /*------------DECLARO ENTIDADES--------------------------*/
       Entidad entidad = new Entidad();
@@ -71,6 +84,7 @@ public class Bootstrap implements WithSimplePersistenceUnit {
       Servicio servicioDeLa2 = new Servicio(TipoServicio.BAÑO);
       Servicio banioDeEstacion = new Servicio(TipoServicio.BAÑO);
       Servicio elevadorDeEstacion = new Servicio(TipoServicio.ELEVACION);
+
 
       /*------------DECLARO ESTABLECIMIENTOS------------*/
 

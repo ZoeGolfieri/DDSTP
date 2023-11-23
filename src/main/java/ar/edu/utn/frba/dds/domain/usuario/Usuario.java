@@ -79,8 +79,11 @@ public class Usuario{
       @AttributeOverride(name = "longitud", column = @Column(name = "usuario_longitud")),
   })
   private Localizacion localizacion;
-  @Column(name = "localizacion_actual")
+
   @Embedded
+  @AttributeOverrides({
+      @AttributeOverride(name = "division.nombre", column = @Column(name = "usuario_provincia_actual"))
+  })
   private Localizacion localizacion_actual;
   @ManyToMany
   @JoinTable(

@@ -4,16 +4,7 @@ import ar.edu.utn.frba.dds.domain.localizacion.Localizacion;
 import ar.edu.utn.frba.dds.domain.servicio.Incidente;
 import ar.edu.utn.frba.dds.domain.servicio.Servicio;
 import ar.edu.utn.frba.dds.domain.usuario.Usuario;
-import javax.mail.MessagingException;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -25,12 +16,9 @@ public abstract class MedioComunicacion { // esto deberia ser una interfaz?
     @Column(name = "id_medioComunicacion")
     private Integer id_medioComunicacion;
 
-    public Localizacion notificarIncidente(Usuario usuario, Incidente incidente){
-        return null;
-    }
+    public String notificarIncidente(Usuario usuario, Incidente incidente){return "OK";}
 
-    public void notificarServicioCercano(Usuario usuario, List<Servicio> servicios) {
-    }
+    public String notificarServicioCercano(Usuario usuario, List<Servicio> servicios) {return "OK";}
 }
 
 

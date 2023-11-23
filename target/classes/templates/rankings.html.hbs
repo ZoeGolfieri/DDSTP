@@ -1,0 +1,61 @@
+ {{#partial "principal" }}
+<body>
+  <div class="container container_r">
+    <div class="card_ranking_cantidad">
+      <div class="card_ranking_titulo">
+        <div class = "titulo_ranking">
+            <h2>Ranking por cantidad de incidentes</h2>
+        </div>
+      </div>
+      <div class = "card_ranking">
+        <ul class = "posiciones_ranking">
+                <li><strong> Posición </strong></li>
+                {{#each posicionesRankingCantidad}}
+                   <li>{{this}}</li>
+                {{/each}}
+        </ul>
+        <ul class = "contenido_ranking">
+                <li><strong> ENTIDAD </strong></li>
+                {{#each rankingCantidad}}
+                  <li>{{this}}</li>
+                {{/each}}
+        </ul>
+        <ul class="contenido_ranking">
+                <li><strong> Incidentes </strong></li>
+                {{#each cantidades}}
+                  <li>{{this}}</li>
+                {{/each}}
+        </ul>
+      </div>
+    </div>
+        <div class="card_ranking_cierre">
+            <div class="card_ranking_titulo">
+                <div class="titulo_ranking">
+                  <h2>Ranking por promedio de tiempo de cierre</h2>
+                </div>
+            </div>
+          <div class = "card_ranking">
+            <ul class = "posiciones_ranking">
+               <li> <strong>Posición </strong></li>
+               {{#each posicionesRankingCierre}}
+                  <li>{{this}}</li>
+               {{/each}}
+            </ul>
+            <ul class = "contenido_ranking">
+                <li><strong> ENTIDAD </strong></li>
+                {{#each rankingCierre}}
+                  <li>{{this}}</li>
+                {{/each}}
+            </ul>
+            <ul class="contenido_ranking">
+                <li><strong> Horas </strong></li>
+                {{#each promedios}}
+                  <li>{{this}}</li>
+                {{/each}}
+            </ul>
+          </div>
+        </div>
+    </div>
+</body>
+ {{/partial}}
+ {{> layoutConBarra.html.hbs }}

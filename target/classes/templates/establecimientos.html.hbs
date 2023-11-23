@@ -1,0 +1,31 @@
+{{#partial "principal" }}
+    <div class="contenedor">
+    <h1 class="tituloEstablecimiento">Establecimientos</h1>
+        <div class="cardsEstablecimiento">
+            <ul>
+                {{#establecimientos}}
+                    <div class='cardEstablecimiento'>
+                        <li class="containerEstablecimiento">
+                            <div class="bodyCardEstablecimiento">
+                                    <div class="titulo_establecimiento">
+                                        <h1>{{nombre}}</h1>
+                                    </div>
+                                    <div class="tipo_establecimiento">
+                                        <h1>{{tipoEstablecimiento}}</h1>
+                                    </div>
+                            </div>
+                            <div class = "botonServicio">
+                                <a  class="boton_enviar" href="/establecimientos/{{id_establecimiento}}/servicios">
+                                    Ver Servicios
+                                </a>
+                            </div>
+                        </li>
+                    </div>
+                {{/establecimientos}}
+            </ul>
+        </div>
+    </div>
+
+{{/partial}}
+
+{{> layoutConBarra.html.hbs }}

@@ -85,24 +85,22 @@ public class Establecimiento  {
     this.servicios.remove(servicioObsoleto);
   }
 
-  public List<Servicio>  estaCerca(Usuario usuario) {
-
+  public List<Servicio> estaCerca(Usuario usuario) {
     if(this.localizacion.estaCerca(usuario.getLocalizacion())){
-
       List<Comunidad> comunidades = RepositorioComunidad.getInstancia()
           .comunidadesALasQuePertenece(usuario);
       List<Servicio> serviciosConIncidentes = this.servicios.stream().filter(servicio -> {
         return !(servicio.getIncidentes().stream().filter(incidente -> {
-          return  comunidades.contains(incidente.getComunidad()) && incidente.getEstado().equals(EstadoIncidente.ACTIVO);
+          return  comunidades.contains(incidente.getComunidad()) &&
+                  incidente.getEstado().equals(EstadoIncidente.ACTIVO);
         }).collect(Collectors.toList()).isEmpty());
       }).collect(Collectors.toList());
-
       if(!serviciosConIncidentes.isEmpty()){
         usuario.notificarServiciosCercanos(serviciosConIncidentes);
       }
       return serviciosConIncidentes;
     }
-  return null;
+    return null;
   }
 
 }

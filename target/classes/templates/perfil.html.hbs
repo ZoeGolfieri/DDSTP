@@ -1,0 +1,44 @@
+{{#partial "principal" }}
+    <div class="contenedor">
+        <div class="cardsEstablecimiento">
+            <ul>
+                {{#if comunidadesAdmin.length}}
+                    <div class="tituloAdmin"> Administración de usuarios </div>
+                    {{#comunidadesAdmin}}
+                        <div class='cardComunidadAdmin'>
+                            <li class="containerAdmin">
+                                <div class="bodyCardEstablecimiento">
+
+                                    <div class="titulo_comunidadAdmin"> {{nombre}}</div>
+
+                                    <div class="dataComunidad">
+                                        <div class="tituloMiembros"> Miembros: </div>
+                                        <div class="nombreMiembro">
+                                            {{#miembros}}
+                                                <div>{{nombreUsuario}}</div>
+                                            {{/miembros}}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </div>
+                    {{/comunidadesAdmin}}
+                {{/if}}
+
+            </ul>
+        </div>
+
+        <div class = botonCerrarSesion>
+            <form method="post" action="/perfil">
+                <button type="submit" class="boton_enviar">
+                    Cerrar sesión
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+{{/partial}}
+
+{{> layoutConBarra.html.hbs }}

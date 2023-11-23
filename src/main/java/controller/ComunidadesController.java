@@ -8,6 +8,7 @@ import ar.edu.utn.frba.dds.domain.servicio.Incidente;
 import ar.edu.utn.frba.dds.domain.usuario.Usuario;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonArray;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -17,25 +18,18 @@ import java.util.Map;
 
 public class ComunidadesController {
   public ModelAndView  listar(Request request, Response response) {
+    Map<String, Object> modelo = new HashMap<>();
+    Integer id = request.session().attribute("user_id");
+    Usuario usuario = RepositorioDeUsuarios.getINSTANCE().buscarPorId(id);
+    List<Comunidad> comunidades = RepositorioComunidad.getInstancia().comunidadesALasQuePertenece(usuario);
 
     ObjectMapper objectMapper = new ObjectMapper();
-    //Map<String, Object> modelo = new HashMap<>();
-    //Integer id = request.session().attribute("user_id");
-    //Usuario usuario = RepositorioDeUsuarios.getINSTANCE().buscarPorId(id);
-    List<Comunidad> comunidades = RepositorioComunidad.getInstancia().obtenerTodos();
-
-    System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
     try {
-
       // Convierte la lista a JSON
       String comunidadesJson = objectMapper.writeValueAsString(comunidades);
-      response.type("application/json");
-      response.body(comunidadesJson);
-      return null;
-      //modelo.put("comunidades", comunidadesJson);
-      //return new ModelAndView(modelo,"comunidades.html.hbs");
+      modelo.put("comunidades", comunidadesJson);
+      return new ModelAndView(modelo,"comunidades.html.hbs");
     } catch (JsonProcessingException e) {
-      System.out.println("CHAUUUUUUUUUUUUUUUUUUUUUUUUUUU");
       e.printStackTrace();
       return null;
     }
@@ -54,6 +48,24 @@ public class ComunidadesController {
       }
       return comunidad.incidentesReportados();
     }).toList();
+
+    if(request.queryParams("estadoIncidentes") != null) {
+      String estadoIncidentes = request.queryParams("estadoIncidentes");
+      if (estadoIncidentes.equals("ACTIVO")) {
+        modelo.put("activo", true);
+        modelo.put("cerrado", false);
+        modelo.put("todos", false);
+      } else if (estadoIncidentes.equals("RESUELTO")) {
+        modelo.put("cerrado", true);
+        modelo.put("activo", false);
+        modelo.put("todos", false);
+      } }
+      else {
+      modelo.put("activo", false);
+      modelo.put("cerrado", false);
+      modelo.put("todos", true);
+    }
+
     modelo.put("incidentes", listaincidentes);
     modelo.put("path","comunidades");
     return new ModelAndView(modelo, "incidentes.html.hbs");

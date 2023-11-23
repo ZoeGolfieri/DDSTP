@@ -1,50 +1,47 @@
 package ar.edu.utn.frba.dds.domain.medioComunicacion;
 
-import ar.edu.utn.frba.dds.domain.localizacion.Localizacion;
 import ar.edu.utn.frba.dds.domain.servicio.Incidente;
 import ar.edu.utn.frba.dds.domain.servicio.Servicio;
 import ar.edu.utn.frba.dds.domain.usuario.Usuario;
-import ar.edu.utn.frba.dds.exceptions.SeEnvioWhatsappException;
-import retrofit2.Retrofit;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import ar.edu.utn.frba.dds.exceptions.SeEnvioEmailException;
+import ar.edu.utn.frba.dds.exceptions.SeEnvioWhatsappException;;
 import java.util.List;
-
-import com.twilio.Twilio;
-import com.twilio.type.PhoneNumber;
+import java.util.stream.Collectors;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 @DiscriminatorValue( value = "Whatsapp")
 public class WhatsApp extends MedioComunicacion {
 
-    private static final String apiURL = "https://api.whatsapp.com/send?";
-    private Retrofit retrofit;
+    private  MedioComunicacionAdapter medioComunicacionAdapter = new AdapterTwilioWhatsapp();
 
-    // Constructor e inicialización de las credenciales de Twilio
-    public WhatsApp() {
-        String ACCOUNT_SID = "your_account_sid";
-        String AUTH_TOKEN = "your_auth_token";
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    public WhatsApp(MedioComunicacionAdapter medioComunicacionAdapter) {
+        this.medioComunicacionAdapter = medioComunicacionAdapter;
     }
-
-    private void enviarNotificacion(String numeroTelefono, String mensaje) {
-        PhoneNumber to = new PhoneNumber(numeroTelefono);
-        PhoneNumber from = new PhoneNumber("your_twilio_phone_number");
-        throw new SeEnvioWhatsappException("Mensaje enviado al usuario");
-       // Message.creator(to, from, mensaje).create();
-    }
+    public WhatsApp(){}
 
     @Override
-    public Localizacion notificarIncidente(Usuario usuario, Incidente incidente) {
+    public String notificarIncidente(Usuario usuario, Incidente incidente) {
         String telefonoUsuario = usuario.getTelefono();
-        String mensaje = "La comunidad: "+incidente.getComunidad()+" reportó un nuevo incidente. Las observaciones son: "+incidente.getObservaciones();
-        this.enviarNotificacion(telefonoUsuario,mensaje);
-        return usuario.getLocalizacion_actual();    //NO TENGO IDEA QUE LOCALIZACION HABIA QUE DEVOLVER NI POR QUÉ, LA AGERGUÉ PORQUE ASI ESTABA, NO SÉ SI ES NECESARIO
+        try{
+            String mensaje = "La comunidad: " +incidente.getComunidad()+ " reportó un nuevo incidente. Las observaciones son: " +incidente.getObservaciones();
+            this.medioComunicacionAdapter.notificate(mensaje, telefonoUsuario);
+            return "OK";
+        }catch (SeEnvioWhatsappException error) {
+            throw new SeEnvioWhatsappException("No se pudo enviar email a " + telefonoUsuario);
+        }
     }
 
     @Override
-    public void notificarServicioCercano(Usuario usuario, List<Servicio> servicios) {
-
+    public String notificarServicioCercano(Usuario usuario, List<Servicio> servicios) {
+        String telefonoUsuario = usuario.getTelefono();
+        try{
+            List<String> serviciosIds = servicios.stream().map(servicio -> servicio.getId_servicio().toString()).collect(Collectors.toList());
+            String mensaje = serviciosIds.stream().reduce(" ", (acumulador, serviciosId) -> acumulador + serviciosId + ", ");
+            this.medioComunicacionAdapter.notificate("HAY SERVICIOS CERCANOS " + mensaje, telefonoUsuario);
+            return "OK";
+        }catch (SeEnvioWhatsappException error) {
+            throw new SeEnvioWhatsappException("No se pudo enviar email a " + telefonoUsuario);
+        }
     }
 }
