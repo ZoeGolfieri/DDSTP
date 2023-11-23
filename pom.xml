@@ -177,7 +177,11 @@
       <artifactId>jackson-annotations</artifactId>
       <version>2.12.5</version> <!-- Utiliza la última versión disponible -->
     </dependency>
-
+    <dependency>
+      <groupId>com.microsoft.azure.applicationinsights.v2015_05_01</groupId>
+      <artifactId>azure-mgmt-insights</artifactId>
+      <version>1.0.0-beta</version>
+    </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
@@ -218,19 +222,29 @@
           <target>17</target>
         </configuration>
       </plugin>
+
       <plugin>
-        <!-- Build an executable JAR -->
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
+        <artifactId>maven-assembly-plugin</artifactId>
         <version>3.3.0</version>
         <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>main/Routes.class</mainClass>
+              <mainClass>main.Routes</mainClass>
             </manifest>
           </archive>
         </configuration>
-
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>com.microsoft.azure</groupId>
