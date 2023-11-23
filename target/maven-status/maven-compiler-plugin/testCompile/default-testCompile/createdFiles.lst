@@ -1,0 +1,12 @@
+ar\edu\utn\frba\dds\testRegistroUsuario\ValidacionRegistroDeEmpresasTest.class
+ar\edu\utn\frba\dds\testComunidad\ValidacionComunidad.class
+ar\edu\utn\frba\dds\rankingsTests\RankingTests.class
+db\ContextTest.class
+ar\edu\utn\frba\dds\testRegistroUsuario\ValidacionDeContraseniaTest.class
+ar\edu\utn\frba\dds\testIncidente\ValidacionEnvioIncidentes.class
+ar\edu\utn\frba\dds\testMedioComunicacion\MedioComunicacionTest.class
+ar\edu\utn\frba\dds\testRegistroUsuario\ValidacionRegistroDeUsuario.class
+ar\edu\utn\frba\dds\testServicioLocalizacion\testServicioLocalizacionGeoRefApi.class
+ar\edu\utn\frba\dds\EstablecimientoTest\ValidacionEstablecimiento.class
+ar\edu\utn\frba\dds\testIncidente\Incidentes.class
+ar\edu\utn\frba\dds\testRegistroUsuario\ValidacionArchivoPeoresContrasenias.class
