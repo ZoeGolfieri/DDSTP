@@ -4,7 +4,7 @@
 name: Build and deploy JAR app to Azure Web App - TpDDsReFinalConectados
 
 env:
-  AZURE_WEBAPP_NAME: TpDDSFinal # set this to your application's name
+  AZURE_WEBAPP_NAME: TpDDsReFinalConectados # set this to your application's name
   
 on:
   push:
