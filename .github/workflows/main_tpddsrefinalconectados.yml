@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: '${{ github.workspace }}/target/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
 
   deploy:
     runs-on: windows-latest
@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'TpDDsReFinalConectados'
           slot-name: 'Production'
-          package: '*.jar'
+          package: 'ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DBBDDE630B534F3E986E7F3E9B096CB1 }}
