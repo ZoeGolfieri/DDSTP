@@ -53,7 +53,7 @@ jobs:
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DBBDDE630B534F3E986E7F3E9B096CB1 }}
       - name: Run Java command
         run: |
-          export PATH="${JAVA_HOME}/bin:${PATH}"
+          $env:PATH = "${env:JAVA_HOME}\bin;$env:PATH"
           java -cp ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar main.Routes
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
