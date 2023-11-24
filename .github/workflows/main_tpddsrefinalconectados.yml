@@ -45,6 +45,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: java-app
+      - name: Show Application Logs
+        run: cat ${{ github.workspace }}/logs/*.log
       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -54,3 +56,5 @@ jobs:
           slot-name: 'Production'
           package: 'ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
           publish-profile:  ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE2 }}
+      - name: Start Application
+        run: java -jar target/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar
