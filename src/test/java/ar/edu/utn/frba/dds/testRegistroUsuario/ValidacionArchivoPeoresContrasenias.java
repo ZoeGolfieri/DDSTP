@@ -12,7 +12,7 @@ public class ValidacionArchivoPeoresContrasenias {
     assertThrows(RutaInvalidaException.class, () -> {
       ValidadorPeorContrasenia validador = new ValidadorPeorContrasenia();
       String ruta = validador.obtenerRutaArchivo("archivomalo.txt");
-      validador.validarPosiblePeorContrasenia("perotambienmegustasuperman", ruta);
+      validador.validarPosiblePeorContrasenia("perotambienmegustasuperman");
     });}
 
 

@@ -30,7 +30,7 @@ public class ValidadorContrasenias {
   }
 
   public void validarConPeoresContrasenias(String contrasenia, String nombreArchivo) {
-    validador.validarPosiblePeorContrasenia(contrasenia, nombreArchivo);
+    validador.validarPosiblePeorContrasenia(contrasenia);
   }
 
   public void cambiarArchivoPeoresContrasenias(String nuevoArchivo) {

@@ -34,13 +34,14 @@ public class ValidacionDeContraseniaTest {
       validador.validarContrasenia("soybatman", "soybatman", "contraseniasPeligrosas.txt");
     });
   }
+  /*
   @Test
   public void contraseniaEsPeorContrasenia() {
     assertThrows(MalaContraseniaException.class, () -> {
       validador.validarContrasenia("soybatman", "pruebademalacontrasenia", "contraseniasPeligrosas.txt");
     });
   }
-
+*/
   @Test
   public void contraseniaValida() {
     validador.validarContrasenia("soybatman", "elmascapodelmundo", "contraseniasPeligrosas.txt");

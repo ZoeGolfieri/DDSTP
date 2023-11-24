@@ -31,17 +31,27 @@
   </repositories>
 
   <dependencies>
-
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-servlet-api</artifactId>
+      <version>10.0.14</version> <!-- Utiliza la versión más reciente compatible con tu aplicación -->
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>5.0.0</version> <!-- Utiliza la versión más reciente -->
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>com.sun.mail</groupId>
       <artifactId>jakarta.mail</artifactId>
-      <version>2.0.1</version>
+      <version>1.6.3</version>
     </dependency>
-
     <dependency>
       <groupId>com.sun.activation</groupId>
       <artifactId>jakarta.activation</artifactId>
-      <version>2.0.1</version>
+      <version>1.2.1</version>
     </dependency>
 
     <dependency>
@@ -136,7 +146,12 @@
 <!--      <artifactId>javax.mail-api</artifactId>-->
 <!--      <version>1.6.2</version>-->
 <!--    </dependency>-->
-
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version> <!-- o la versión que sea compatible con Spark -->
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>com.sparkjava</groupId>
       <artifactId>spark-core</artifactId>
@@ -178,7 +193,7 @@
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
-      <version>2.12.5</version> <!-- Utiliza la última versión disponible -->
+      <version>2.13.0</version> <!-- Utiliza la última versión disponible -->
     </dependency>
     <dependency>
       <groupId>com.microsoft.azure.applicationinsights.v2015_05_01</groupId>
@@ -190,11 +205,17 @@
       <artifactId>jackson-core</artifactId>
       <version>2.12.5</version> <!-- Utiliza la última versión disponible -->
     </dependency>
+
     <dependency>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-site-plugin</artifactId>
-      <version>4.0.0-M11</version>
-      <type>maven-plugin</type>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-server</artifactId>
+      <version>9.0.2.v20130417</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.mail</groupId>
+      <artifactId>jakarta.mail-api</artifactId>
+      <version>2.0.1</version>
     </dependency>
   </dependencies>
   <build>
@@ -202,18 +223,24 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
       </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.3.0</version>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
