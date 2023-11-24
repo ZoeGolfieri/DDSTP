@@ -63,8 +63,12 @@ jobs:
         working-directory: '${{ github.workspace }}'
       - name: Print Java version
         run: java -version
-        
+
       - name: Run JAR file
+        run: java -jar ./DDSTP/target/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar
+        working-directory: .
+        
+      - name: Run JAR file2
         run: java -jar '${{ github.workspace }}/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
