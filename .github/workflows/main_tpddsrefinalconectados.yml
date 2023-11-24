@@ -3,9 +3,6 @@
 
 name: Build and deploy JAR app to Azure Web App - TpDDsReFinalConectados
 
-env:
-  AZURE_WEBAPP_NAME: TpDDsReFinalConectados # set this to your application's name
-  
 on:
   push:
     branches:
@@ -14,35 +11,27 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
-        with:
-          java-version: '17'
 
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
           java-version: '17'
-          
-      - name: Print current directory
-        run: |
-          pwd
-          ls -R
-        working-directory: .
-      
+
       - name: Build with Maven
         run: mvn clean install
-     
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     environment:
       name: 'Production'
@@ -60,37 +49,5 @@ jobs:
         with:
           app-name: 'TpDDsReFinalConectados'
           slot-name: 'Production'
-          package: 'ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
-          publish-profile:  ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE2 }}
-  
-      - name: Print workspace contents
-        run: ls -R
-        working-directory: '${{ github.workspace }}'
-      - name: Print Java version
-        run: java -version
-
-      - name: Set up Java version for running JAR
-        uses: actions/setup-java@v1
-        with:
-          java-version: '17'
-          distribution: 'adopt'
-          
-      - name: Download and Run JAR file
-        run: |
-          mkdir myTarget
-          cp target/*.jar myTarget
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: myPackage
-          path: myTarget
-      - name: Run JAR file
-        run: java -jar myTarget/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar
-        env:
-          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
-          PATH: ${{ env.JAVA_HOME }}/bin:${{ runner.path }}
-      - name: Run JAR file2
-        run: java -jar '${{ github.workspace }}/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
-        env:
-          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
-          PATH: ${{ env.JAVA_HOME }}/bin:${{ runner.path }}
+          package: '*.jar'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DBBDDE630B534F3E986E7F3E9B096CB1 }}
