@@ -56,7 +56,5 @@ jobs:
           publish-profile:  ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE2 }}
           
       - name: Start Application
-        run: |
-            cd target
-            java -jar ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar
+        run: java -jar ./target/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar
         working-directory: .
