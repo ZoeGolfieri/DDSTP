@@ -60,5 +60,4 @@ jobs:
         working-directory: '${{ github.workspace }}'
 
       - name: Run JAR file
-        run: java -jar target/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar
-        working-directory: '${{ github.workspace }}'
+        run: java -jar '${{ github.workspace }}/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
