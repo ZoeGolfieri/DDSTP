@@ -64,5 +64,8 @@ jobs:
       - name: Run JAR file
         run: java -jar '${{ github.workspace }}/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
         env:
-          JAVA_HOME: C:\Program Files\Java\jdk-17
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
           PATH: ${{ env.JAVA_HOME }}/bin:${{ runner.path }}
+          
+      - name: Print Java version
+        run: java -version
