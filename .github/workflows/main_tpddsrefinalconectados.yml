@@ -54,11 +54,17 @@ jobs:
           slot-name: 'Production'
           package: 'ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
           publish-profile:  ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE2 }}
+    
       - name: Print directory contents
         run: |
           ls -R
         working-directory: .
-          
-      - name: Start Application
+
+      - name: Print target directory contents
+        run: |
+          ls -R ./target
+        working-directory: .
+
+      - name: Run JAR file
         run: java -jar ./target/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar
         working-directory: .
