@@ -54,7 +54,13 @@ jobs:
           slot-name: 'Production'
           package: 'ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
           publish-profile:  ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE2 }}
-    
+      - name: Print directory structure
+        run: |
+          pwd
+          ls -R
+          ls -R ./target
+        working-directory: .
+        
       - name: Print directory contents
         run: |
           ls -R
