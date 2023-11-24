@@ -64,6 +64,11 @@ jobs:
         run: |
           ls -R ./target
         working-directory: .
+      - name: Verify directory structure
+        run: |
+          ls -R
+          ls -R ./target
+        working-directory: .
 
       - name: Run JAR file
         run: java -jar ./target/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar
