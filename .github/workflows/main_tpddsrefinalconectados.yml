@@ -58,6 +58,9 @@ jobs:
       - name: Print workspace contents
         run: ls -R
         working-directory: '${{ github.workspace }}'
-
+        
       - name: Run JAR file
         run: java -jar '${{ github.workspace }}/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
+        env:
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+          PATH: ${{ env.JAVA_HOME }}/bin:${{ runner.path }}
