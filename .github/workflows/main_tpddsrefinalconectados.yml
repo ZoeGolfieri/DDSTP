@@ -51,6 +51,12 @@ jobs:
           slot-name: 'Production'
           package: 'ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DBBDDE630B534F3E986E7F3E9B096CB1 }}
+     
+      - name: Set up Java version for running JAR
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+          
       - name: Run Java command
         run: |
           $env:PATH = "${env:JAVA_HOME}\bin;$env:PATH"
