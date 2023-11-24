@@ -28,6 +28,7 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install
+        working-directory: ./DDSTP
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
