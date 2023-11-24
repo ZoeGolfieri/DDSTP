@@ -74,7 +74,21 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-        
+          
+      - name: Download and Run JAR file
+        run: |
+          mkdir myTarget
+          cp target/*.jar myTarget
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: myPackage
+          path: myTarget
+      - name: Run JAR file
+        run: java -jar myTarget/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar
+        env:
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+          PATH: ${{ env.JAVA_HOME }}/bin:${{ runner.path }}
       - name: Run JAR file2
         run: java -jar '${{ github.workspace }}/ejercicio-1.0-SNAPSHOT-jar-with-dependencies.jar'
         env:
