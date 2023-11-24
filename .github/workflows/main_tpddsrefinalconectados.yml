@@ -25,7 +25,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: '17'
-
+          
+      - name: Print current directory
+        run: |
+          pwd
+          ls -R
+        working-directory: .
+      
       - name: Build with Maven
         run: mvn clean install
      
